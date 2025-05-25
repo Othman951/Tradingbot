@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Analyse des paires de trading</h1>
+    <div>
+        <h2>Données des paires</h2>
+        <ul>
+            {% for pair in pairs %}
+                <li>{{ pair['pairSymbol'] }} - Prix : {{ pair['priceUsd'] }} USD</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h2>Analyse GPT</h2>
+        <p>{{ analysis }}</p>
+    </div>
+</body>
+</html>
