@@ -9,15 +9,10 @@ def home():
 @main.route("/dexscreener-price/<path:pair>")
 def dexscreener_price(pair):
     url = f"https://api.dexscreener.com/latest/dex/pairs/{pair}"
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
-        return jsonify(data)
-    except requests.exceptions.RequestException as e:
-        return jsonify({"error": "Impossible de récupérer les données", "details": str(e)}), 500
-
-
-
+    response = requests.get(url)
+    if response.status_code == 200:
+        return jsonify(response.json())
+    else:
+        return jsonify({"error": "Impossible de récupérer les données"}), 500
 
 
